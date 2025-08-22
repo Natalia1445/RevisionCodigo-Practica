@@ -7,7 +7,7 @@ const productos = [
   {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
-// Se cambia Name por Id
+
 const li = document.getElementById("lista-de-productos")
 const $i = document.querySelector(".input");
 const botonDeFiltro = document.querySelector("button"); //Se mueve hasta arriba el boton
