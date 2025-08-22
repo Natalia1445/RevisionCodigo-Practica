@@ -7,9 +7,10 @@ const productos = [
   {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
-
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+// Se cambia Name por Id
+const li = document.getElementById("lista-de-productos")
+const $i = document.querySelector(".input");
+const botonDeFiltro = document.querySelector("button"); //Se mueve hasta arriba el boton
 
 for (let i = 0; i < productos.length; i++) {
   var d = document.createElement("div")
@@ -28,16 +29,19 @@ for (let i = 0; i < productos.length; i++) {
   li.appendChild(d)
 }
 
-displayProductos(productos)
-const botonDeFiltro = document.querySelector("button");
+//Se nombra la función productos
 
-botonDeFiltro.onclick = function() {
+function displayProductos(productos){
+
+//Se agrega el addEventListener dentro de la función productos
+
+botonDeFiltro.addEventListener("click", () => {
   while (li.firstChild) {
     li.removeChild(li.firstChild);
   }
-
-  const texto = $i.value;
-  console.log(texto);
+  //se agrega el valor de trim y LowerCase para que filtre solo las palabras sin ser case sensible
+  const texto = $i.value.trim().toLowerCase();
+ // Se elimina console.log(texto); ya que no tiene una utilidad específica para los propósitos del código
   const productosFiltrados = filtrado(productos, texto );
 
   for (let i = 0; i < productosFiltrados.length; i++) {
@@ -56,8 +60,11 @@ botonDeFiltro.onclick = function() {
   
     li.appendChild(d)
   }
-}
+})
 
-const filtrado = (productos = [], texto) => {
+function filtrado (productos = [], texto) {
   return productos.filter(item => item.tipo.includes(texto) || item.color.includes(texto));
 }  
+}
+//Se manda a llamar a la función
+displayProductos(productos);
